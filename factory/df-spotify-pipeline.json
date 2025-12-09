@@ -1,0 +1,9 @@
+{
+	"name": "df-spotify-pipeline",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "d58ef1da-162a-4fbb-a5c4-cacccaec93b0",
+		"tenantId": "0f9a35f9-7265-4226-b559-79e75e7b510a"
+	}
+}
