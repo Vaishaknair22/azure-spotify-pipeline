@@ -22,7 +22,7 @@ This project implements an **end-to-end ETL pipeline** that ingests Spotify stre
 
 ## Architecture
 
-![System Architecture](./system_design.png)
+![System Architecture](./images/system_design.png)
 
 ### High-Level Flow
 ```mermaid
