@@ -24,21 +24,6 @@ This project implements an **end-to-end ETL pipeline** that ingests Spotify stre
 
 ![System Architecture](./images/system_design.png)
 
-### High-Level Flow
-```mermaid
-graph LR
-    A[Azure SQL Database] -->|ADF Pipeline| B[Bronze Layer<br/>ADLS Parquet]
-    B -->|Databricks Autoloader| C[Silver Layer<br/>Delta Tables]
-    C -->|DLT Pipeline| D[Gold Layer<br/>SCD + Streaming]
-    D --> E[Analytics & BI]
-    A -.->|CDC Metadata| F[Change Tracking]
-    F -.-> B
-    style A fill:#0078D4,color:#fff
-    style B fill:#FFA500,color:#fff
-    style C fill:#C0C0C0,color:#000
-    style D fill:#FFD700,color:#000
-    style E fill:#28a745,color:#fff
-```
 
 ### Data Flow
 ```
