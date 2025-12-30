@@ -22,6 +22,9 @@ This project implements an **end-to-end ETL pipeline** that ingests Spotify stre
 
 ## Architecture
 
+![System Architecture](./system_design.png)
+
+### High-Level Flow
 ```mermaid
 graph LR
     A[Azure SQL Database] -->|ADF Pipeline| B[Bronze Layer<br/>ADLS Parquet]
@@ -38,7 +41,6 @@ graph LR
 ```
 
 ### Data Flow
-
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
 │                        Azure SQL Database                           │
@@ -131,7 +133,6 @@ graph LR
 - WebActivity integration for real-time notifications
 
 ## Project Structure
-
 ```
 azure-spotify-pipeline/
 ├── Databricks/
@@ -208,9 +209,9 @@ This is the main production pipeline that processes all 5 tables in a loop:
 - **SCD Type 2** implementation with start/end dates
 - Streaming table definitions
 - Data quality constraints:
-  ```python
+```python
   @dlt.expect("valid_user_id", "user_id IS NOT NULL")
-  ```
+```
 - Auto CDC flows for historical tracking
 
 ## Prerequisites
@@ -227,7 +228,6 @@ This is the main production pipeline that processes all 5 tables in a loop:
 ## Setup & Deployment
 
 ### 1. Azure Resources Setup
-
 ```bash
 # Create resource group
 az group create --name rg-spotify-pipeline --location eastus
@@ -244,7 +244,6 @@ az databricks workspace create --name spotify-databricks --resource-group rg-spo
 ```
 
 ### 2. Azure Data Factory Deployment
-
 ```bash
 # Clone repository
 git clone https://github.com/yourusername/azure-spotify-pipeline.git
@@ -255,7 +254,6 @@ cd azure-spotify-pipeline
 ```
 
 ### 3. Databricks Bundle Deployment
-
 ```bash
 cd Databricks/.bundle/spotify_dab/dev/files
 
@@ -276,7 +274,6 @@ Update the following files with your connection strings:
 - `linkedService/AzureSqlDatabase1.json`
 
 ### 5. Run the Pipeline
-
 ```bash
 # Trigger ADF pipeline
 az datafactory pipeline create-run \
@@ -320,5 +317,3 @@ az datafactory pipeline create-run \
 - **Incremental Loading**: Only process changed data
 - **Serverless Compute**: Databricks serverless SQL/Spark for auto-scaling
 - **Delta Lake**: ACID transactions and time travel
-
-
